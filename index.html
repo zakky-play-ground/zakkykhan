@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(214, 199, 243);
+}
+
+header {
+  background-color:#231836ff;
+  color: #A96893ff;
+  font-size: 27px;
+  font-weight: bold;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header img {
+  max-width: 50px;
+  height: auto;
+  border-radius: 50%;
+}
+
+header span {
+  margin-left: 16px;
+}
+
+
+header div {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the select element */
+select {
+  padding: 0.7px; /* Reduce the padding to make it more compact */
+  font-size: 14px; /* Adjust the base font size */
+  border: none;
+  background-color: #7f6489;
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+  width: 17px; /* Set a fixed width for the dropdown */
+}
+
+
+
+/* Style for the dropdown options */
+option {
+  padding: 5px;
+  white-space: pre-wrap; /* Allow line breaks within options */
+}
+
+/* Responsive styles for different character sizes */
+@media (max-width: 480px) {
+  select {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    width: 100%; /* Make the dropdown full width on smaller screens */
+  }
+}
+
+
+
+
+
+
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 16px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo-container img {
+  
+  max-width: 50px;
+  height: auto;
+  border-radius: 50%;
+ 
+}
+
+/* Media queries for responsiveness */
+
+/* For screens smaller than 600px */
+@media (max-width: 600px) {
+  .logo-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+/* logo  */
+
+
+
+.notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -8px;
+}
+
+.note {
+  background-color: #180D2Bff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 8px;
+  padding: 16px; 
+  flex-basis: calc(33.33% - 32px);
+  position: relative;
+}
+
+.note img {
+  float: left;
+  margin-right: 16px;
+  margin-bottom: 4px;
+  max-width: 100px;
+  height: auto;
+  border-radius: 4px;
+}
+
+h2 {
+  color: #A96893ff;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+p {
+  color: #8D7373ff;
+  margin-top: 8px;
+}
+
+
+.note-update {
+  font-size: 12px;
+  color: #8b8c8a;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+
+.note-date {
+  font-size: 12px;
+  color: #7f6489;
+  position: absolute;
+  top: 20px;
+  right: 8px;
+}
+
+.note-update2 {
+  font-size: 12px;
+  color: #8b8c8a;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.container{
+  width: 17rem;
+  height: 3rem;
+  background: #430534;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+}
+
+.container div{
+  min-width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #7f6489;
+  scroll-snap-align: center;
+
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  color: #F2E8FDff;
+  font-size: 15px;
+}
+
+.sidebar {
+  width: 100px; /* Adjust the width as needed */
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
+.sidebar-content {
+  height: 100%;
+  overflow-y: auto; /* Enable scrolling if the sidebar content exceeds its height */
+}
+
+
+
+td, th {
+  border: 1px solid #322841ff;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #322841ff;
+}
+
+
+
+footer {
+  background-color: #180D2Dff;
+  color: #4D4260ff;
+  font-size: 16px;
+  text-align: center;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+footer i {
+  margin: 8px;
+  font-size: 24px;
+  color: #F2E8FDff;
+}
+
+.contact-bar {
+  background-color: #322841ff;
+  color: #F2E8FDff;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px;
+}
+
+.contact-bar a {
+  color: #F2E8FDff;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+@media (max-width: 768px) {
+    .note {
+      flex-basis: calc(50% - 16px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .note {
+      flex-basis: 100%;
+    }
+  }
+
+    </style>
+  </head>
+  
+  
+
+  
+  
+  <body>
+    <header>
+      <div>
+        <img src="profile.jpg" alt="Profile Picture">
+        <span>Zakky khan </span>
+        <!-- <i class="fa fa-cog fa-spin"></i> -->
+      </div>
+      <div>
+        
+        <select name="cars" id="cars">
+          <option value="volvo">&#x278A; fh-E-5m-600s-52lac</option>
+          <option value="saab">&#x2777; NC2-shop-374sqf-40k</option>
+          <option value="opel">&#x2778; NC2-N-4m-grayStr-57D</option>
+          <option value="audi">&#x2779; NC2-U-3m-13D</option>
+        </select>
+      
+      </div>
+    </header>
+
+
+
+
+
+    
+    <main>
+
+      <div class="logo-container">
+        <img src="logo1.png" alt="Logo 1">
+        <img src="logo2.png" alt="Logo 2">
+        <img src="logo3.png" alt="Logo 3">
+        <img src="logo4.png" alt="Logo 4">
+        <img src="logo5.png" alt="Logo 5">
+      </div>
+
+
+      <h4>
+        <marquee width="100%" direction="left" height="100px">
+          <font face="arial" color="rosybrown" size="17">
+             Trustworthy service, personalized support. Choose us for your real estate needs!
+  
+          </font>
+        </marquee>
+      </h4>
+
+
+      
+
+      <div class="notes-container">
+     
+        
+      <div class="note">
+        <br>
+        <p>
+          <span style="color:  #01a85a; border-radius: 2px;">B-17 (MPCHS) <small>multi professional co-operative housing society.</small></span><br>
+          <span style="color:  #0061af; border-radius: 2px;">(FMC) <small>faisal margallah city.</small></span><br>
+          <span style="color:  #ff9a00; border-radius: 2px;" >(FH) <small>faisal hill.</small></span><br>
+          <span style="color:  #ffde65; border-radius: 2px;">(NC-2) <small>new city phase 2.</small></span>
+
+          are four adjacent societies that are interconnected to each other.
+          "Own prime land & commercial/residential units! Choose lumpsum or flexible installment plans,
+           1 to 5 years. Invest smart, secure your future! #RealEstate" </p>
+        
+         <!-- <marquee width="100%" direction="right" height=" 30px">
+          <font face="arial" color="rosybrown" size="2">
+            This is a sample scrolling text that has scrolls texts to right.
+          </font>
+        </marquee> -->
+        <span class="note-date">Aug21</span>
+        <span class="note-update">Ini.inv-Mon.inst-Comp.proj</span>
+      </div>
+
+      
+
+
+
+
+      <div class="notes-container">
+        
+        <div class="note">
+          <img src="image1.jpg" alt="Image 1">
+          <br>
+          <h2><i class='fa fa-building-o'></i><small> B-17,FMC,FH</small></h2>
+          <p>
+            Discover prime flat for sale in B-17, Islamabad,
+           Our website showcases exclusive properties. With stunning views and strategic location. </p>
+  
+           <marquee width="100%" direction="down" height=" 50px">
+            <font face="arial" color="rosybrown" size="12">
+              This is a sample scrolling text that has scrolls texts to right.
+            </font>
+          </marquee>
+          <span class="note-date">jun23</span>
+          <span class="note-update">Ini.inv-Mon.inst-Comp.proj</span>
+        </div>
+  
+  
+
+
+
+
+      <div class="note">
+        <img src="image2.jpg" alt="Image 2">
+        <br>
+        <h2><i class='fa fa-building-o'></i> B-17</h2>
+        <p>
+          J7 Emporium is a project by JY Global and includes several other ongoing projects.
+           It is designed for individuals who appreciate a luxurious living style. 
+           With an initial investment of 20 lac and manageable installments of 6 lac after every 3 months.
+           expected to be completed in 2025. 
+           <!-- <br><br><span style="background-color:  #794166; border-radius: 2px;">Shops <small>.</small></span><br>
+           <span style="background-color:  #371e2f; border-radius: 2px;">Residential Apartments <small>.</small></span>
+           <span style="background-color:  #ff9a00; border-radius: 2px;">Hotel Apartments <small>.</small></span>
+           <span style="background-color:  #6e064d; border-radius: 2px;">Food-Court shops <small>.</small></span>
+           <span style="background-color:  #014355; border-radius: 2px;">Corporate Offices <small>.</small></span>
+           <span style="background-color:  #03220c; border-radius: 2px;">Penthouse Apartments <small>.</small></span><br> -->
+ 
+          </p>
+
+           <span>
+            <font face="arial" color="rosybrown" size="7">
+             20 lac.<font size="2" >initial investment</font>
+            </font>
+          </span>
+          <br><br>
+          
+        <span class="note-date">11may2023</span>
+        <span class="note-update">20L-6L/3M-2025C</span>
+        <span class="note-update2">G55-F50-2F50-HA30-FC60-RA145-CO26-Ph25</span>
+      </div>
+
+
+
+      <div class="note">
+        <img src="image3.jpg" alt="Image 2">
+        <br>
+        <h2><i class="fa fa-building-o"></i> B-17</h2>
+        <p>
+          Reliance Arcade B-17 is a project by Reliance Builder, renowned for their successful projects.
+           It is designed for individuals who desire standard of living  in a full residential tower from ground to 12 floor. 
+           With an initial investment of 40 lac (50%) and manageable installments of 7 lac after every 3 months.
+           In finishing phase, handed over in 2024. </p>
+
+           <span>
+            <font face="arial" color="rosybrown" size="7">
+            40 lac.<font size="2" >initial investment</font>
+            </font>
+          </span>
+          <br><br>
+
+        <span class="note-date">11may2023</span>
+        <span class="note-update">40L-7L/3M-2024C</span>
+        <span class="note-update2">G10-F10-2F10-9</span>
+      </div>
+
+
+      <div class="note">
+        <img src="image4.jpg" alt="Image 2">
+        <br>
+        <h2><i class="fa fa-building-o"></i> B-17</h2>
+        <p>
+          Urban Heights in B-17's B1 Mini Markaz!.Experience the convenience of a fully functional market surrounding your residence.
+          Recently constructed tower is ready for you to move in, 
+          booking price of 18 lac (30%) and affordable monthly installments of 1.5 lac,
+          Business-minded individuals will appreciate the availability of offices and shops within our tower.
+         </p>
+
+         <span>
+          <font face="arial" color="rosybrown" size="7">
+          18 lac.<font size="2" >initial investment</font>
+          </font>
+        </span>
+        <br><br>
+
+        <span class="note-date">11may2023</span>
+        <span class="note-update">18L-1.5L/M-C</span>
+        <span class="note-update2">G40-LG33-OF21-OF19-RA9-A8.5-A8.5</span>
+      </div>
+
+
+      
+
+      <div class="note">
+        <img src="image5.jpg" alt="Image 2">
+        <br>
+        <h2><i class="fa fa-building-o"></i> Fh</h2>
+        <p>
+          
+          Redsun tower a smart project by Redsun Associates on GT Road,
+           Faisal Hills. Offering shops, Duplex, residential apartments,
+          and hotel/serviced apartments. Completion by June 2026. 
+            Enjoy affordable prices and 4-year installment plan with just a 20% down payment (11.5 lac)
+             remaining on installment after every 3 months (2.8 lac) 
+         </p>
+
+         <span>
+          <font face="arial" color="rosybrown" size="7">
+          11 lac.<font size="2" >initial investment</font>
+          </font>
+        </span>
+        <br><br>
+
+        <span class="note-date">11may2023</span>
+        <span class="note-update">11L-2.8L/3M-2026C</span>
+        <span class="note-update2">G42-LG36-F30-S28-S26-FC34-HA9-RA850</span>
+      </div>
+
+
+
+      <div class="note">
+        <img src="image6.jpg" alt="Image 2">
+        <br>
+        <h2><i class="fa fa-building-o"></i> Fh</h2>
+        <p>
+          ALSA Sunshine Construction Co. has crafted commercial projects, mosques, Jamia masjids, 
+          and schools for FT & FH. We present Galaxy Hill in Block A, 
+          on the main double road offering a sirenic and an eye-catchy view of Margalla Hills
+          for individuals seeking serenity and a prime commercial hub. 
+          Affordable studio/one-bed apartments priced between 27lac to 40lac total, payable in convenient installments. 
+          Book now with just 10% 
+         </p>
+         <span>
+          <font face="arial" color="rosybrown" size="7">
+          8 lac.<font size="2" >initial investment</font>
+          </font>
+        </span>
+        <br><br>
+        <span class="note-date">11may2023</span>
+        <span class="note-update">3L+5L-2.5L/3M-2024C</span>
+        <span class="note-update2">G60-LG55-F55-A15</span>
+      </div>
+      
+      
+      
+      
+      
+       <div class="note">
+        <img src="image6.1A4U.jpg" alt="Image 2">
+         <br>
+        <h2><i class="fa fa-building-o"></i> Nc-2</h2>
+        <p>
+          Prime investment opportunity! A4U Tower: Luxurious living in developed sector H block on Main Blvd, New City Phase II.
+          High visibility, connectivity, quality construction. 3-year completion. Invest now! with  just 11 lac and remaining on installment.
+         </p>
+         <span>
+          <font face="arial" color="rosybrown" size="7">
+          11 lac.<font size="2" >initial investment</font>
+          </font>
+        </span>
+        <br><br>
+        <span class="note-date">3may2023</span>
+        <span class="note-update">11L-1.5L/M-2025C</span>
+        <span class="note-update2">(PL/1M) G45-LG40-F35-2F35-A11</span>
+      </div>
+
+
+      
+
+
+      
+      <div style ="background-color: #4D4260ff; " class="note">
+        <br>
+        <p>
+          <!-- <h2 style="color:  #ff9a00; border-radius: 2px;" >(FT-2) <small>faisal town phase 2.</small></h2>
+          <h2 style="color:  #ffde65; border-radius: 2px;">(NC-p) <small>new city paradise.</small></h2>
+          <h2 style="color:  #2590e7; border-radius: 2px;">(BWC) <small>blue world city.</small></h2><br> -->
+          <h2 style="color:  #F2E8FDff; border-radius: 2px;" >(FT-2) <small>faisal town phase 2.</small></h2>
+          <h2 style="color:  #F2E8FDff; border-radius: 2px;">(NC-p) <small>new city paradise.</small></h2>
+          <h2 style="color:  #F2E8FDff; border-radius: 2px;">(BWC) <small>blue world city.</small></h2><br> -->
+
+          "These are the best options for purchasing residential and commercial plots (land) on an installment basis." </p>
+        
+         <!-- <marquee width="100%" direction="right" height=" 30px">
+          <font face="arial" color="rosybrown" size="2">
+            This is a sample scrolling text that has scrolls texts to right.
+          </font>
+        </marquee> -->
+        <span class="note-date">Aug21</span>
+        <span class="note-update">Zakky khan</span>
+      </div>
+
+
+
+       
+
+
+
+      <div class="note">
+        <img src="image7NCP.jpg" alt="Image 3">
+        <br>
+        <div>
+          <h2><i class="fa fa-square-o"></i> Nc-p</h2>
+          <p><small>New City Paradise: 4,256 Kanal PHATA-approved housing society at GT Road, adjacent to Burhan Interchange ,M1 Motorway.</small></p>
+          <p> <mark>3.5 Marla </mark>plot at total price 15.8 lac, initial investment 3lac 70thousand(23.42%), on installment 20k each month.  </p>
+        </div>
+        <span class="note-date">31may2023</span>
+        <span class="note-update">3.8L-20k/M-2025C</span>
+        <span class="note-update2"><small>3.5m13/15.80-5m18.50-10m35.50-k67.50</small></span>
+<!--         <span class="note-update2"><small>3.5m13/15.80-5m18.50/19.75/22.75-10m35.50/37/43-k67.50/70/82</small></span> -->
+      </div>
+
+
+
+
+
+      <div class="note">
+        <!-- <img src="image6.1A4U.jpg" alt="Image 2"> -->
+        <h2><i class="fa fa-square-o"></i> NewCity-Paradise</h2>
+        <p>
+          <p><i class="fa fa-certificate"></i> Authorized Sales Partner <small>(Marjan)</small></p>
+          <div style="overflow-x: hidden;">
+          <table>
+            <tr>
+              <th></th>
+              <th>Company</th>
+              <th>Plot Size</th>
+              <th>Price</th>
+              <th>Location</th>
+             
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>New City Paradise</td>
+              <td>All Dues Clear (5 marla) Plot</td>
+              <td>not any update from socity</td>
+              <td><small>at GT Road, adjacent to Burhan Interchange</small></td> 
+              
+            </tr>
+            <!-- <tr>
+              <th>3</th>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+              
+            </tr>
+            <tr>
+              <th>4</th>
+              <td>Ernst Handel</td>
+              <td>Roland Mendel</td>
+              <td>Austria</td>
+              
+            </tr>
+            <tr>
+              <th>5</th>
+              <td>Island Trading</td>
+              <td>Helen Bennett</td>
+              <td>UK</td>
+              
+            </tr>
+            <tr>
+              <th>6</th>
+              <td>Laughing Bacchus Winecellars</td>
+              <td>Yoshi Tannamuri</td>
+              <td>Canada</td>
+              
+            </tr>
+            <tr>
+              <th>7</th>
+              <td>Magazzini Alimentari Riuniti</td>
+              <td>Giovanni Rovelli</td>
+              <td>Italy</td>
+              
+            </tr> -->
+          </table>
+        </div>
+        </p>
+        <span class="note-date">21june2023</span>
+        <!-- <span class="note-update">11L-1.5L/M-2025C</span> -->
+        <!-- <span class="note-update2">(PL/1M) G45-LG40-F35-2F35-A11</span> -->
+      </div>
+
+
+
+
+
+      <div class="note">
+        <img src="image8ft2.jpg" alt="Image 3">
+        <br>
+        <div>
+          <h2><i class="fa fa-square-o"></i> FT-2</h2>
+          <p><small>Faisal Town Phase 2: Zedem International's grand project with direct highway access at Thalian Interchange. 25,000 Kanals.</small></p>
+          <p>5 Marla plot at total price <mark>27.80 lac.</mark> With an initial investment of 6 lac and manageable installments of 1lac 22thousand after every 3 months.  </p>
+        </div>
+        <span class="note-date">31may2023</span>
+        <span class="note-update">6L-1.2L/M-2026C</span>
+        <span class="note-update2"><small>5m/28-7m/38.25-10m/49.25-14m/61-k/8.55--2k/1.51</small></span>
+      </div>
+
+
+      <div class="note">
+        <!-- <img src="image6.1A4U.jpg" alt="Image 2"> -->
+        <h2><i class="fa fa-square-o"></i> Faisal Town-2</h2>
+        <p>
+          <p><i class="fa fa-certificate"></i> Authorized Sales Partner <small>(Oreal)</small></p>
+          <div style="overflow-x: hidden;">
+          <table>
+            <tr>
+              <th></th>
+              <th>Company</th>
+              <th>Plot Size</th>
+              <th>Price</th>
+              <th>Location</th>
+             
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>Faisal Town-2</td>
+              <td>All Dues Clear (5 marla) Plot</td>
+              <td>23.50 lac</td>
+              <td><small>at Chakri Interchange, Rawalpindi</small></td> 
+              
+            </tr>
+            <!-- <tr>
+              <th>3</th>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+              
+            </tr>
+            <tr>
+              <th>4</th>
+              <td>Ernst Handel</td>
+              <td>Roland Mendel</td>
+              <td>Austria</td>
+              
+            </tr>
+            <tr>
+              <th>5</th>
+              <td>Island Trading</td>
+              <td>Helen Bennett</td>
+              <td>UK</td>
+              
+            </tr>
+            <tr>
+              <th>6</th>
+              <td>Laughing Bacchus Winecellars</td>
+              <td>Yoshi Tannamuri</td>
+              <td>Canada</td>
+              
+            </tr>
+            <tr>
+              <th>7</th>
+              <td>Magazzini Alimentari Riuniti</td>
+              <td>Giovanni Rovelli</td>
+              <td>Italy</td>
+              
+            </tr> -->
+          </table>
+        </div>
+        </p>
+        <span class="note-date">21june2023</span>
+        <!-- <span class="note-update">11L-1.5L/M-2025C</span> -->
+        <!-- <span class="note-update2">(PL/1M) G45-LG40-F35-2F35-A11</span> -->
+      </div>
+
+
+
+
+      <div class="note">
+        <img src="img9bwc.jpg" alt="Image 3">
+        <br>
+        <div>
+          <h2><i class="fa fa-square-o"></i> BWC</h2>
+          <p><small>Blue World City: Pakistan's 1st purpose-built tourist city. Near Chakri Interchange, 
+            Rawalpindi Ring Road, Lhr-Isb Motorway (M2). 
+            Only 20 mins from Islamabad Airport. </small></p>
+          <p>4.5 Marla plot at total price 10.8 lac, initial investment 87 thousand only, remaining on installment 10k each month.   </p>
+        </div>
+        <span class="note-date">31may2023</span>
+        <span class="note-update">87k-10k/M-2026C</span>
+        <span class="note-update2">AW-4.5/10.80 WF-6m/17.50-12m/31.50-k/42</span>
+      </div>
+
+
+      <div class="note">
+        <!-- <img src="image6.1A4U.jpg" alt="Image 2"> -->
+        <h2><i class="fa fa-square-o"></i> Blue World City</h2>
+        <p>
+          <p><i class="fa fa-certificate"></i> Authorized Sales Partner <small>(SMZ)</small></p>
+          <div style="overflow-x: hidden;">
+          <table>
+            <tr>
+              <th></th>
+              <th>Company</th>
+              <th>Plot Size</th>
+              <th>Price</th>
+              <th>Location</th>
+             
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>Blue World City</td>
+              <td>All Dues Clear 1 kanal Plot</td>
+              <td>40 lac</td>
+              <td><small>Near Chakri Interchange, 
+                Rawalpindi</small></td> 
+              
+            </tr>
+            <!-- <tr>
+              <th>3</th>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+              
+            </tr>
+            <tr>
+              <th>4</th>
+              <td>Ernst Handel</td>
+              <td>Roland Mendel</td>
+              <td>Austria</td>
+              
+            </tr>
+            <tr>
+              <th>5</th>
+              <td>Island Trading</td>
+              <td>Helen Bennett</td>
+              <td>UK</td>
+              
+            </tr>
+            <tr>
+              <th>6</th>
+              <td>Laughing Bacchus Winecellars</td>
+              <td>Yoshi Tannamuri</td>
+              <td>Canada</td>
+              
+            </tr>
+            <tr>
+              <th>7</th>
+              <td>Magazzini Alimentari Riuniti</td>
+              <td>Giovanni Rovelli</td>
+              <td>Italy</td>
+              
+            </tr> -->
+          </table>
+        </div>
+        </p>
+        <span class="note-date">21june2023</span>
+        <!-- <span class="note-update">11L-1.5L/M-2025C</span> -->
+        <!-- <span class="note-update2">(PL/1M) G45-LG40-F35-2F35-A11</span> -->
+      </div>
+
+
+
+
+
+     
+      <div class="note">
+        <!-- <img src="img9bwc.jpg" alt="Image 3"> -->
+        <br>
+        <h2>lumpsum Investment</h2>
+        <div class="container">
+            <div class="boxD">&#x29D7; 7Jun2023</div>
+            <div class="box1">&#x278A; fh B 7000s 10m sold</div>
+            <div class="box2">&#x2777; fh EX 365 5m 56lac</div>
+            <div class="box3">&#x2778; fh EX 665 5m 51lac</div>
+            <div class="box4">&#x2779; fh EX 666 5m 51lac</div>
+            <div class="box5">&#x277A; fh EX 689 5m 51lac</div>
+            <div class="box6">&#x277B; fh EX 993 5m 53lac</div>
+          
+        </div>
+<br>
+         <div class="container">
+            <div class="box1">&#x2460; NC-U-4m-20lac</div>
+            <div class="box2">&#x2461; </div>
+            <div class="box3">&#x2462; </div>
+            <div class="box4">&#x2463; </div>
+        </div>
+        <span class="note-date">3june2023</span>
+        <span class="note-update">update</span>
+        <span class="note-update2">z</span>
+      </div>
+
+
+      <div class="note">
+        <br>
+        <div>
+          <h2><i class="fa fa-square-o"></i> zakky khan</h2>
+
+          <select name="cars" id="cars">
+            <optgroup label="Alsa Sunshine">
+              <option value="volvo">&#x278A;B17-E-flats </option>
+              <option value="saab">&#x2777;full ready 9k/sqf </option>
+            </optgroup>
+            <optgroup label="new-city2 rates">
+              <option value="mercedes"> &#x278A; M-ext 5 to 7</option>
+              <option value="audi">&#x2777; R ext 3.5 to 4.5</option>
+              <option value="audi">&#x2778; U 3.5 to 4</option>
+              <option value="audi">&#x2779; Ex 4.5 to 6</option>
+            </optgroup>
+          </select><br><br>
+
+          <select name="cars" id="cars">
+            <optgroup label="New-city2-rates">
+              <option value="volvo">&#x2460; Gas-sector 7.5 to 12</option>
+              <option value="saab">&#x2461; Non-gas 3.5 to 8</option>
+            </optgroup>
+            <optgroup label="A block(P) 9.5 to 11">
+              <option value="audi">&#x2460; A block 5 to 7 </option>
+              <option value="audi">&#x2461; B block 9 to 11</option>
+              <option value="audi">&#x2462; C block 7.5 to 11</option>
+              <option value="audi">&#x2463; D block 7.5 to 11</option>
+              <option value="audi">&#x2464; E block gas 11</option>
+              <option value="audi">&#x2465; E-ext. no gas</option>
+              <option value="audi">&#x2466; L block 12</option>
+                <option value="audi">&#x2467; H block 10</option> 
+                <option value="audi">&#x2468; Q-ex 3Marla 4.5 to 6</option>           
+            </optgroup>
+          </select>
+    
+
+
+
+       </div>
+        <span class="note-date">31may2023</span>
+        <!-- <span class="note-update">87k-10k/M-2026C</span>
+        <span class="note-update2">AW-4.5/10.80 WF-6m/17.50-12m/31.50-k/42</span> -->
+      </div>
+
+
+
+
+
+     </div>
+    </main>
+    <footer>
+      
+     
+
+
+
+    
+     
+    <a href="#"><i class="fa fa-instagram"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+    </footer>
+    <div class="contact-bar">
+      <a href="zakkykhan@outlook.com"><i class="fa fa-envelope"></i> zakkykhan@outlook.com</a>
+      <a href="tel:+92-312-5133-831"><i class="fa fa-phone"></i> +92-312-5133-831</a>
+    </div>
+  </body>
+</html>
