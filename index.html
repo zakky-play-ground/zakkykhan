@@ -89,11 +89,9 @@ main {
 }
 
 .logo-container img {
-  
   max-width: 50px;
   height: auto;
   border-radius: 50%;
- 
 }
 
 /* Media queries for responsiveness */
@@ -101,8 +99,10 @@ main {
 /* For screens smaller than 600px */
 @media (max-width: 600px) {
   .logo-container {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row; /* Set flex direction to row */
+    justify-content: space-around; /* Optional: Adjust this based on your preference */
+    align-items: center; /* Optional: Adjust this based on your preference */
+    flex-wrap: nowrap; /* Prevent logos from wrapping onto new lines */
   }
 }
 /* logo  */
@@ -287,7 +287,7 @@ footer i {
           <option value="volvo">&#x278A; fh-E-5m-600s-52lac</option>
           <option value="saab">&#x2777; NC2-shop-374sqf-40k</option>
           <option value="opel">&#x2778; NC2-N-4m-grayStr-57D</option>
-          <option value="audi">&#x2779; NC2-U-3m-13D</option>
+          <option value="audi">&#x2779; NC2-U-3m-13F</option>
         </select>
       
       </div>
@@ -436,13 +436,14 @@ footer i {
         <p>
           Urban Heights in B-17's B1 Mini Markaz!.Experience the convenience of a fully functional market surrounding your residence.
           Recently constructed tower is ready for you to move in, 
-          booking price of 18 lac (30%) and affordable monthly installments of 1.5 lac,
+          <small><del>booking price of 18 lac (30%) and affordable monthly installments of 1.5 lac,</del></small>"Now the tower is ready to move in,
+          and the flat price on a lump sum basis is 12000 per sq foot."
           Business-minded individuals will appreciate the availability of offices and shops within our tower.
          </p>
 
          <span>
           <font face="arial" color="rosybrown" size="7">
-          18 lac.<font size="2" >initial investment</font>
+          42 lac.<font size="2" >full investment</font>
           </font>
         </span>
         <br><br>
@@ -541,7 +542,7 @@ footer i {
           <h2 style="color:  #2590e7; border-radius: 2px;">(BWC) <small>blue world city.</small></h2><br> -->
           <h2 style="color:  #F2E8FDff; border-radius: 2px;" >(FT-2) <small>faisal town phase 2.</small></h2>
           <h2 style="color:  #F2E8FDff; border-radius: 2px;">(NC-p) <small>new city paradise.</small></h2>
-          <h2 style="color:  #F2E8FDff; border-radius: 2px;">(BWC) <small>blue world city.</small></h2><br> -->
+          <h2 style="color:  #F2E8FDff; border-radius: 2px;">(BWC) <small>blue world city.</small></h2><br>
 
           "These are the best options for purchasing residential and commercial plots (land) on an installment basis." </p>
         
